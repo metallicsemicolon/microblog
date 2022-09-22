@@ -1,0 +1,40 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:insert="fragment/head :: head">
+    <title>[EDIT] [[${blog.title}]] — Lor's Microblog</title>
+</head>
+
+<body>
+<header th:insert="fragment/header :: header"></header>
+<div class="center">
+    <div id="blog-container">
+        <form method="POST" action="#" th:action="${action} == 'create' ? @{/admin/blog} : @{/admin/blog/{id}/edit(id=${post.id})}" th:object="${post}">
+            <h4 class="info">
+                [[${post.id} != null ? 'EDIT' : 'CREATE']] BLOG POST
+            </h4>
+            <textarea class="title" th:field="*{title}" placeholder="Click to Edit Title"></textarea>
+            <textarea class="header" th:field="*{header}"  placeholder="Click to Edit Header"></textarea>
+            <hr>
+            <textarea class="content" th:field="*{content}" placeholder="Click to Edit Header"></textarea>
+            <button action="submit" th:if="${action} == 'create'">CREATE</button>
+            <button action="submit" th:if="${action} == 'edit'">UPDATE</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const tx = document.getElementsByTagName("textarea");
+    for (let i = 0; i < tx.length; i++) {
+        tx[i].setAttribute(
+            "style",
+            "height:" + tx[i].scrollHeight + "px;overflow-y:hidden;"
+        );
+        tx[i].addEventListener("input", OnInput, false);
+    }
+
+    function OnInput() {
+        this.style.height = 0;
+        this.style.height = this.scrollHeight + "px";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:insert="fragment/head :: head">
+    <title>[[${blog.title}]] — Lor's Microblog</title>
+</head>
+
+<body>
+<header th:insert="fragment/header :: header"></header>
+<div class="center">
+    <div id="blog-container">
+        <h4 class="info">
+            Posted [[${blog.readableDateCreated()}]]<br>
+            <span th:if="${blog.dateEdited > 0}" th:remove="tag"> LAST EDITED [[${blog.readableDateEdited()}]] </span>
+        </h4>
+        <h1 class="title">
+            [[${blog.title}]]
+        </h1>
+        <h3 class="header">
+            [[${blog.header}]]
+        </h3>
+        <ul sec:authorize="isAuthenticated()" class="center">
+            <li class="controls">
+                <a th:href="@{/admin/blog/{id}/edit(id=${blog.id})}">EDIT</a>
+            </li>
+            <li class="controls">
+                <a th:href="@{/admin/blog/{id}/delete(id=${blog.id})}">DELETE</a>
+            </li>
+        </ul>
+        <hr>
+        <p class="content" th:text="${blog.content}"/>
+    </div>
+</div>
+</body>
+</html>

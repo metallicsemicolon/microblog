@@ -1,0 +1,21 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:insert="fragment/head :: head">
+    <title>WHOOPS! — Lor's Microblog</title>
+</head>
+
+<body>
+<header th:insert="fragment/header :: header"></header>
+<div class="center">
+    <div id="blog-container">
+        <h1 class="title">
+            Whoops!
+        </h1>
+        <h3 class="header">Something went wrong.</h3>
+        <button class="button" onclick="window.history.back()">Go back</button>
+    </div>
+</div>
+</body>
+</html>

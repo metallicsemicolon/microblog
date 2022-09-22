@@ -1,0 +1,24 @@
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:insert="fragment/head :: head">
+    <title>WHOOPS! — Lor's Microblog</title>
+</head>
+
+<body>
+<header th:insert="fragment/header :: header"></header>
+<div class="center">
+    <div id="blog-container">
+        <h1 class="title warning">
+            Warning
+        </h1>
+        <h3 class="header">After a post has been deleted, it cannot be recovered. Continue?</h3>
+        <button class="button secondary" onclick="window.history.back()">GO BACK</button>
+        <form method="POST" th:action="@{/admin/blog/{id}/delete(id=${post.id})}" th:object="${post}">
+            <button class="button" action="submit">DELETE</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:fragment="header">
+<header class="navbar">
+    <div class="page-title">Lor's Microblog</div>
+    <div class="page-subtitle">A small Spring Boot website</div>
+    <nav>
+        <ul>
+            <li>
+                <a th:href="@{/}" class="nav-button">HOME</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a th:href="@{/login}" class="nav-button">LOGIN</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/admin/blog}" class="nav-button">CREATE BLOGPOST</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <form method="POST" th:action="@{/logout}">
+                    <button class="nav-button" type="submit">LOGOUT</button>
+                </form>
+            </li>
+
+        </ul>
+    </nav>
+</header>
+</body>
+</html>

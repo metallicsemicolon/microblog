@@ -1,0 +1,20 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:insert="fragment/head :: head">
+    <title>Lor's Microblog</title>
+</head>
+
+<body>
+<header th:insert="fragment/header :: header"></header>
+<div id="post-list">
+    <th:block th:each="post: ${blogposts}">
+        <a th:href="@{/blog/{id}(id=${post.id})}">
+        <div class="blogpost" >
+            <h4 class="date-created" th:text="${post.readableDateCreated}"></h4>
+            <h1 class="post-title" th:text="${post.title}"></h1>
+            <h2 class="post-header" th:text="${post.header}"></h2>
+        </div>
+        </a>
+    </th:block>
+</div>
+
+</body></html>

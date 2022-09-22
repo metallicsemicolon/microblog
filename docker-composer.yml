@@ -1,0 +1,19 @@
+services:
+  redis:
+    image: redis:latest
+    expose:
+      - "6379"
+    ports:
+      - "6379:49153"
+  mongodb:
+    image: mongo:latest
+    expose:
+      - "27017"
+  microblog:
+    image: microblog:latest
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+      - mongodb
